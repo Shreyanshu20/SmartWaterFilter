@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Smart Water Filter Dashboard</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body>
@@ -35,31 +37,88 @@
                 <li><a href="#dashboard" class="active">Dashboard</a></li>
                 <li><a href="#filter-status">Filter Status</a></li>
                 <li><a href="#usage-stats">Usage Stats</a></li>
+                <li><a href="#water-analysis">Water Analysis</a></li>
                 <li><a href="#settings">Settings</a></li>
-                <li><a href="#contact">Contact Us</a></li>
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#contact">Contact</a></li>
             </ul>
         </nav>
 
         <main>
             <section id="dashboard" class="active">
-                <h2>Dashboard</h2>
-                <div class="dashboard-grid">
-                    <div class="card">
+                <h2>Dashboard Overview</h2>
+                
+                <!-- Main Stats -->
+                <div class="quick-stats">
+                    <div class="stat-card highlight">
+                        <i class="ri-water-flash-line"></i>
                         <h3>Water Quality</h3>
-                        <p class="value">98%</p>
+                        <p class="stat-value">98%</p>
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 98%"></div>
+                        </div>
                     </div>
-                    <div class="card">
+                    <div class="stat-card">
+                        <i class="ri-filter-3-line"></i>
                         <h3>Filter Life</h3>
-                        <p class="value">85%</p>
+                        <p class="stat-value">85%</p>
+                        <div class="circular-progress">
+                            <span class="progress-value">85%</span>
+                        </div>
                     </div>
-                    <div class="card">
-                        <h3>Usage Today</h3>
-                        <p class="value">5.2L</p>
+                    <div class="stat-card">
+                        <i class="ri-drop-line"></i>
+                        <h3>Today's Usage</h3>
+                        <p class="stat-value">5.2L</p>
+                        <div class="trend up">
+                            <i class="ri-arrow-up-line"></i>
+                            <span>12% vs yesterday</span>
+                        </div>
                     </div>
-                    <div class="card">
-                        <h3>Alerts</h3>
-                        <p class="value">0</p>
+                    <div class="stat-card">
+                        <i class="ri-alarm-warning-line"></i>
+                        <h3>System Status</h3>
+                        <p class="status-text">Optimal</p>
+                        <div class="status-indicator green"></div>
                     </div>
+                </div>
+
+                <!-- Charts Section -->
+                <div class="dashboard-charts">
+                    <div class="chart-card wide">
+                        <h3>Weekly Usage Trends</h3>
+                        <div class="chart-container">
+                            <canvas id="weeklyTrendChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="chart-card">
+                        <h3>Water Quality Metrics</h3>
+                        <div class="chart-container">
+                            <canvas id="qualityChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="chart-card">
+                        <h3>Real-time TDS Levels</h3>
+                        <div class="chart-container">
+                            <canvas id="tdsChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Actions -->
+                <div class="quick-actions">
+                    <button class="action-btn">
+                        <i class="ri-refresh-line"></i>
+                        Clean Filter
+                    </button>
+                    <button class="action-btn">
+                        <i class="ri-file-chart-line"></i>
+                        Generate Report
+                    </button>
+                    <button class="action-btn">
+                        <i class="ri-settings-3-line"></i>
+                        Quick Settings
+                    </button>
                 </div>
             </section>
 
@@ -67,14 +126,51 @@
                 <h2>Filter Status</h2>
                 <div class="status-container">
                     <div class="status-card">
-                        <h3>Current Status</h3>
+                        <h3>Filter Health</h3>
                         <div class="status-indicator green"></div>
-                        <p>Healthy</p>
+                        <p class="status-text">Optimal Performance</p>
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 85%"></div>
+                        </div>
+                        <p class="status-value">85% Remaining</p>
                     </div>
-                    <div class="status-info">
-                        <p>Last Changed: <span>01/01/2024</span></p>
-                        <p>Next Change: <span>01/04/2024</span></p>
-                        <p>Estimated Life: <span>85 days</span></p>
+                    
+                    <div class="filter-details">
+                        <div class="timeline-card">
+                            <h3>Filter Lifecycle</h3>
+                            <div class="timeline">
+                                <div class="timeline-item">
+                                    <span class="date">Jan 1, 2025</span>
+                                    <span class="event">Installation</span>
+                                </div>
+                                <div class="timeline-item current">
+                                    <span class="date">Today</span>
+                                    <span class="event">85% Life Remaining</span>
+                                </div>
+                                <div class="timeline-item future">
+                                    <span class="date">Apr 1, 2025</span>
+                                    <span class="event">Replacement Due</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="metrics-grid">
+                            <div class="metric-card">
+                                <h4>Water Filtered</h4>
+                                <p class="metric-value">450L</p>
+                                <p class="metric-label">of 1000L capacity</p>
+                            </div>
+                            <div class="metric-card">
+                                <h4>Days Active</h4>
+                                <p class="metric-value">45</p>
+                                <p class="metric-label">of 90 days</p>
+                            </div>
+                            <div class="metric-card">
+                                <h4>Efficiency</h4>
+                                <p class="metric-value">98%</p>
+                                <p class="metric-label">Filtration Rate</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -82,17 +178,57 @@
             <section id="usage-stats">
                 <h2>Usage Statistics</h2>
                 <div class="stats-grid">
-                    <div class="stat-card">
-                        <h3>Daily Usage</h3>
-                        <p>5.2L</p>
+                    <div class="stat-card highlight">
+                        <h3>Today's Usage</h3>
+                        <p class="stat-value">5.2L</p>
+                        <div class="trend up">
+                            <i class="ri-arrow-up-line"></i>
+                            <span>12% vs yesterday</span>
+                        </div>
                     </div>
                     <div class="stat-card">
                         <h3>Weekly Average</h3>
-                        <p>35.8L</p>
+                        <p class="stat-value">35.8L</p>
+                        <div class="trend down">
+                            <i class="ri-arrow-down-line"></i>
+                            <span>5% vs last week</span>
+                        </div>
                     </div>
                     <div class="stat-card">
                         <h3>Monthly Total</h3>
-                        <p>142.5L</p>
+                        <p class="stat-value">142.5L</p>
+                        <canvas id="monthlyTrendChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="usage-details">
+                    <div class="usage-card">
+                        <h3>Usage Patterns</h3>
+                        <div class="chart-container">
+                            <canvas id="usagePatternChart"></canvas>
+                        </div>
+                    </div>
+                    
+                    <div class="consumption-grid">
+                        <div class="consumption-card">
+                            <h4>Peak Hours</h4>
+                            <p class="peak-time">7AM - 9AM</p>
+                            <div class="usage-bar">
+                                <div class="bar-fill" style="width: 75%"></div>
+                            </div>
+                        </div>
+                        <div class="consumption-card">
+                            <h4>Cost Analysis</h4>
+                            <p class="cost-value">$12.50</p>
+                            <p class="cost-label">This month</p>
+                        </div>
+                        <div class="consumption-card">
+                            <h4>Water Saved</h4>
+                            <div class="circular-progress">
+                                <span class="progress-value">32%</span>
+                            </div>
+                            <p class="save-label">vs. Average Household</p>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -100,32 +236,233 @@
             <section id="settings">
                 <h2>Settings</h2>
                 <div class="settings-container">
-                    <div class="setting-item">
+                    <div class="settings-group">
                         <h3>Notifications</h3>
-                        <label class="switch">
-                            <input type="checkbox" checked>
-                            <span class="slider"></span>
-                        </label>
+                        <div class="setting-item">
+                            <span>Filter Change Alerts</span>
+                            <label class="switch">
+                                <input type="checkbox" checked>
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                        <div class="setting-item">
+                            <span>Usage Reports</span>
+                            <label class="switch">
+                                <input type="checkbox">
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                        <div class="setting-item">
+                            <span>Water Quality Alerts</span>
+                            <label class="switch">
+                                <input type="checkbox" checked>
+                                <span class="slider"></span>
+                            </label>
+                        </div>
                     </div>
-                    <div class="setting-item">
-                        <h3>WiFi Settings</h3>
-                        <button class="btn-secondary">Update</button>
-                    </div>
-                    <div class="setting-item">
+
+                    <div class="settings-group">
                         <h3>Maintenance Schedule</h3>
-                        <button class="btn-secondary">Configure</button>
+                        <div class="setting-item">
+                            <span>Auto Clean Mode</span>
+                            <select id="filterSchedule" class="select-styled">
+                                <option value="auto">Automatic</option>
+                                <option value="manual">Manual</option>
+                                <option value="smart">Smart Detection</option>
+                            </select>
+                        </div>
+                        <div class="setting-item">
+                            <span>Clean Time</span>
+                            <input type="time" class="input-styled" value="22:00">
+                        </div>
+                    </div>
+
+                    <div class="settings-group">
+                        <h3>Usage Monitoring</h3>
+                        <div class="setting-item">
+                            <span>Daily Usage Limit</span>
+                            <div class="input-group">
+                                <input type="number" class="input-styled" min="0" step="0.1" value="10">
+                                <span class="unit">L</span>
+                            </div>
+                        </div>
+                        <div class="setting-item">
+                            <span>TDS Alert Threshold</span>
+                            <div class="input-group">
+                                <input type="number" class="input-styled" min="0" value="150">
+                                <span class="unit">PPM</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="settings-group">
+                        <h3>Data Management</h3>
+                        <div class="setting-item">
+                            <span>Export Data</span>
+                            <div class="button-group">
+                                <button class="btn-secondary">CSV</button>
+                                <button class="btn-secondary">PDF</button>
+                            </div>
+                        </div>
+                        <div class="setting-item">
+                            <span>Clear History</span>
+                            <button class="btn-danger">Reset</button>
+                        </div>
                     </div>
                 </div>
             </section>
 
             <section id="contact">
                 <h2>Contact Us</h2>
-                <form class="contact-form">
-                    <input type="text" placeholder="Name" required>
-                    <input type="email" placeholder="Email" required>
-                    <textarea placeholder="Message" required></textarea>
-                    <button type="submit" class="btn-primary">Send Message</button>
-                </form>
+                
+                <div class="contact-grid">
+                    <!-- Creator Card -->
+                    <div class="creator-card">
+                        <div class="creator-profile">
+                            <div class="creator-avatar">
+                                <!-- Replace with actual image -->
+                                <i class="ri-user-fill"></i>
+                            </div>
+                            <h3>Created By</h3>
+                            <h4>Your Name</h4>
+                            <p class="creator-title">Software Developer</p>
+                            <div class="creator-socials">
+                                <a href="https://github.com/yourusername" target="_blank">
+                                    <i class="ri-github-fill"></i>
+                                </a>
+                                <a href="https://linkedin.com/in/yourusername" target="_blank">
+                                    <i class="ri-linkedin-box-fill"></i>
+                                </a>
+                                <a href="mailto:your.email@domain.com">
+                                    <i class="ri-mail-fill"></i>
+                                </a>
+                            </div>
+                            <p class="creator-description">
+                                Passionate about creating smart solutions for water management and conservation.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Existing Contact Form -->
+                    <div class="contact-form-container">
+                        <form class="contact-form">
+                            <input type="text" placeholder="Name" required>
+                            <input type="email" placeholder="Email" required>
+                            <textarea placeholder="Message" required></textarea>
+                            <button type="submit" class="btn-primary">Send Message</button>
+                        </form>
+                    </div>
+                </div>
+            </section>
+
+            <section id="water-analysis">
+                <h2>Water Analysis</h2>
+                <div class="analysis-grid">
+                    <div class="analysis-card">
+                        <h3>Mineral Content</h3>
+                        <canvas id="mineralChart"></canvas>
+                    </div>
+                    <div class="analysis-card">
+                        <h3>Contaminants</h3>
+                        <ul class="contaminant-list">
+                            <li>
+                                <span>Chlorine</span>
+                                <span class="safe">Safe Level</span>
+                            </li>
+                            <li>
+                                <span>Lead</span>
+                                <span class="not-detected">Not Detected</span>
+                            </li>
+                            <li>
+                                <span>Bacteria</span>
+                                <span class="safe">Not Detected</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section id="about">
+                <h2>About Us</h2>
+                <div class="about-container">
+                    <div class="team-section">
+                        <h3>Created By</h3>
+                        <div class="creator-grid">
+                            <div class="creator-card">
+                                <div class="creator-profile">
+                                    <div class="creator-avatar">
+                                        <i class="ri-user-fill"></i>
+                                    </div>
+                                    <h4>Creator Name 1</h4>
+                                    <p class="creator-title">Frontend Developer</p>
+                                    <div class="creator-socials">
+                                        <a href="https://github.com/creator1" target="_blank">
+                                            <i class="ri-github-fill"></i>
+                                        </a>
+                                        <a href="https://linkedin.com/in/creator1" target="_blank">
+                                            <i class="ri-linkedin-box-fill"></i>
+                                        </a>
+                                        <a href="mailto:creator1@domain.com">
+                                            <i class="ri-mail-fill"></i>
+                                        </a>
+                                    </div>
+                                    <p class="creator-description">
+                                        Specialized in creating intuitive user interfaces and responsive designs.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="creator-card">
+                                <div class="creator-profile">
+                                    <div class="creator-avatar">
+                                        <i class="ri-user-fill"></i>
+                                    </div>
+                                    <h4>Creator Name 2</h4>
+                                    <p class="creator-title">Backend Developer</p>
+                                    <div class="creator-socials">
+                                        <a href="https://github.com/creator2" target="_blank">
+                                            <i class="ri-github-fill"></i>
+                                        </a>
+                                        <a href="https://linkedin.com/in/creator2" target="_blank">
+                                            <i class="ri-linkedin-box-fill"></i>
+                                        </a>
+                                        <a href="mailto:creator2@domain.com">
+                                            <i class="ri-mail-fill"></i>
+                                        </a>
+                                    </div>
+                                    <p class="creator-description">
+                                        Expert in system architecture and IoT integration.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mentor-section">
+                        <h3>Mentored By</h3>
+                        <div class="mentor-card">
+                            <div class="creator-profile">
+                                <div class="creator-avatar mentor">
+                                    <i class="ri-user-star-fill"></i>
+                                </div>
+                                <h4>Mentor Name</h4>
+                                <p class="creator-title">Project Mentor</p>
+                                <p class="mentor-designation">Professor, Department Name</p>
+                                <div class="creator-socials">
+                                    <a href="https://linkedin.com/in/mentor" target="_blank">
+                                        <i class="ri-linkedin-box-fill"></i>
+                                    </a>
+                                    <a href="mailto:mentor@domain.com">
+                                        <i class="ri-mail-fill"></i>
+                                    </a>
+                                </div>
+                                <p class="creator-description">
+                                    Guiding students in innovative water management solutions.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </section>
         </main>
     </div>
