@@ -202,15 +202,46 @@ function initializeCharts() {
                         'rgba(72, 149, 239, 0.7)',
                         'rgba(63, 55, 201, 0.7)',
                         'rgba(67, 97, 238, 0.7)'
-                    ]
+                    ],
+                    barThickness: 'flex'
                 }]
             },
             options: {
                 responsive: true,
                 maintainAspectRatio: false,
                 plugins: {
-                    legend: {
-                        display: false
+                    legend: { display: false }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            stepSize: 5,
+                            font: {
+                                size: 11
+                            }
+                        },
+                        grid: {
+                            drawBorder: false
+                        }
+                    },
+                    x: {
+                        ticks: {
+                            font: {
+                                size: 11
+                            }
+                        },
+                        grid: {
+                            display: false
+                        }
+                    }
+                },
+                layout: {
+                    padding: {
+                        left: 10,
+                        right: 10,
+                        top: 10,
+                        bottom: 10
                     }
                 }
             }
@@ -356,5 +387,58 @@ function initializeDashboardCharts() {
             tdsChart.data.datasets[0].data.push(newValue);
             tdsChart.update('quiet');
         }, 7000);
+    }
+
+    // Monthly Trend Chart
+    const monthlyCtx = document.getElementById('monthlyTrendChart');
+    if (monthlyCtx) {
+        new Chart(monthlyCtx, {
+            type: 'line',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                datasets: [{
+                    label: 'Monthly Water Usage (L)',
+                    data: [142, 156, 165, 145, 170, 158, 148, 155, 162, 145, 142, 150],
+                    fill: true,
+                    backgroundColor: (context) => {
+                        const ctx = context.chart.ctx;
+                        const gradient = ctx.createLinearGradient(0, 0, 0, 200);
+                        gradient.addColorStop(0, 'rgba(67, 97, 238, 0.3)');
+                        gradient.addColorStop(1, 'rgba(67, 97, 238, 0.0)');
+                        return gradient;
+                    },
+                    borderColor: 'rgba(67, 97, 238, 1)',
+                    tension: 0.4,
+                    pointRadius: 3
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return `Usage: ${context.raw}L`;
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            font: { size: 10 }
+                        }
+                    },
+                    x: {
+                        ticks: {
+                            font: { size: 10 }
+                        }
+                    }
+                }
+            }
+        });
     }
 }
