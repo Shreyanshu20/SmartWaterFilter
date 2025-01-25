@@ -8,26 +8,26 @@ document.addEventListener('DOMContentLoaded', () => {
     // Login Form Handler
     loginForm.addEventListener('submit', (e) => {
         e.preventDefault();
-        
-        const credentials = {
-            username: document.getElementById('username').value,
-            password: document.getElementById('userPassword').value,
-            wifiName: document.getElementById('wifiName').value,
-            wifiPassword: document.getElementById('wifiPassword').value
-        };
+        console.log('Form submitted'); // Debug
 
-        // Here you would typically validate and send credentials to server
-        console.log('Credentials submitted:', credentials);
-        
-        // Hide login, show dashboard
         loginSection.classList.add('hidden');
         dashboardSection.classList.remove('hidden');
-        
-        // Show initial dashboard section
-        document.getElementById('dashboard').classList.add('active');
-        initializeCharts(); // Initialize charts after login
-        console.log('Initializing charts...'); // Debug log
-        initializeDashboardCharts();
+
+        // Ensure Chart.js is loaded
+        if (typeof Chart === 'undefined') {
+            console.error('Chart.js not loaded');
+            return;
+        }
+
+        // Initialize charts with delay to ensure DOM is ready
+        setTimeout(() => {
+            try {
+                console.log('Initializing dashboard charts...'); // Debug
+                initializeDashboardCharts();
+            } catch (error) {
+                console.error('Error initializing charts:', error);
+            }
+        }, 100);
     });
 
     // Navigation Handler
@@ -231,8 +231,13 @@ function initializeDashboardCharts() {
     
     // Weekly Trend Chart
     const weeklyCtx = document.getElementById('weeklyTrendChart');
-    if (weeklyCtx) {
-        console.log('Weekly chart context found'); // Debug log
+    if (!weeklyCtx) {
+        console.error('Weekly chart canvas not found');
+        return;
+    }
+
+    console.log('Creating weekly chart...'); // Debug
+    try {
         new Chart(weeklyCtx, {
             type: 'line',
             data: {
@@ -254,6 +259,9 @@ function initializeDashboardCharts() {
                 }
             }
         });
+        console.log('Weekly chart created successfully'); // Debug
+    } catch (error) {
+        console.error('Error creating weekly chart:', error);
     }
 
     // Quality Chart
@@ -276,5 +284,77 @@ function initializeDashboardCharts() {
                 maintainAspectRatio: false
             }
         });
+    }
+
+    // TDS Chart
+    const tdsCtx = document.getElementById('tdsChart');
+    if (tdsCtx) {
+        console.log('TDS chart context found');
+        
+        const tdsChart = new Chart(tdsCtx, {
+            type: 'line',
+            data: {
+                labels: ['', '', '', '', '', '', '', '', '', ''],
+                datasets: [{
+                    label: 'TDS Level (PPM)',
+                    data: [120, 125, 123, 130, 128, 122, 126, 124, 125, 127],
+                    borderColor: 'rgba(67, 97, 238, 1)',
+                    backgroundColor: 'rgba(67, 97, 238, 0.1)',
+                    fill: true,
+                    tension: 0.4,
+                    pointRadius: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return `TDS: ${context.raw} PPM`;
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: false,
+                        min: 100,
+                        max: 150,
+                        ticks: {
+                            stepSize: 10
+                        }
+                    },
+                    x: {
+                        grid: {
+                            display: false
+                        },
+                        title: {
+                            display: true,
+                            text: 'Real-time Updates',
+                            color: 'rgba(67, 97, 238, 1)',
+                            font: {
+                                size: 12
+                            }
+                        },
+                        ticks: {
+                            display: false
+                        }
+                    }
+                }
+            }
+        });
+
+        // Real-time updates
+        setInterval(() => {
+            const newValue = Math.floor(Math.random() * (140 - 110) + 110);
+            tdsChart.data.labels.shift();
+            tdsChart.data.labels.push('18s');
+            tdsChart.data.datasets[0].data.shift();
+            tdsChart.data.datasets[0].data.push(newValue);
+            tdsChart.update('quiet');
+        }, 7000);
     }
 }

@@ -4,14 +4,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Smart Water Filter Dashboard</title>
+    <link rel="icon" href="./icon.png" type="image/icon type">
+    <title>OxyPure</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
 </head>
 
 <body>
     <div class="login-container" id="loginSection">
+        <div class="login-logo">
+            <img src="./logo.png" alt="OxyPure Logo">
+        </div>
         <form id="loginForm" class="form-card">
             <h2>Login & WiFi Setup</h2>
             <!-- User Credentials -->
@@ -32,7 +36,7 @@
 
     <div class="dashboard hidden" id="dashboardSection">
         <nav>
-            <div class="logo">Smart Filter</div>
+            <div class="logo"><img src="./logo.png" alt=""></div>
             <ul>
                 <li><a href="#dashboard" class="active">Dashboard</a></li>
                 <li><a href="#filter-status">Filter Status</a></li>
@@ -47,7 +51,7 @@
         <main>
             <section id="dashboard" class="active">
                 <h2>Dashboard Overview</h2>
-                
+
                 <!-- Main Stats -->
                 <div class="quick-stats">
                     <div class="stat-card highlight">
@@ -63,7 +67,6 @@
                         <h3>Filter Life</h3>
                         <p class="stat-value">85%</p>
                         <div class="circular-progress">
-                            <span class="progress-value">85%</span>
                         </div>
                     </div>
                     <div class="stat-card">
@@ -134,7 +137,7 @@
                         </div>
                         <p class="status-value">85% Remaining</p>
                     </div>
-                    
+
                     <div class="filter-details">
                         <div class="timeline-card">
                             <h3>Filter Lifecycle</h3>
@@ -153,7 +156,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div class="metrics-grid">
                             <div class="metric-card">
                                 <h4>Water Filtered</h4>
@@ -208,7 +211,7 @@
                             <canvas id="usagePatternChart"></canvas>
                         </div>
                     </div>
-                    
+
                     <div class="consumption-grid">
                         <div class="consumption-card">
                             <h4>Peak Hours</h4>
@@ -224,9 +227,8 @@
                         </div>
                         <div class="consumption-card">
                             <h4>Water Saved</h4>
-                            <div class="circular-progress">
-                                <span class="progress-value">32%</span>
-                            </div>
+                            <div class="progress-value">32%</div>
+                            <div class="circular-progress"></div>
                             <p class="save-label">vs. Average Household</p>
                         </div>
                     </div>
@@ -314,41 +316,41 @@
 
             <section id="contact">
                 <h2>Contact Us</h2>
-                
                 <div class="contact-grid">
-                    <!-- Creator Card -->
-                    <div class="creator-card">
-                        <div class="creator-profile">
-                            <div class="creator-avatar">
-                                <!-- Replace with actual image -->
-                                <i class="ri-user-fill"></i>
-                            </div>
-                            <h3>Created By</h3>
-                            <h4>Your Name</h4>
-                            <p class="creator-title">Software Developer</p>
-                            <div class="creator-socials">
-                                <a href="https://github.com/yourusername" target="_blank">
-                                    <i class="ri-github-fill"></i>
-                                </a>
-                                <a href="https://linkedin.com/in/yourusername" target="_blank">
-                                    <i class="ri-linkedin-box-fill"></i>
-                                </a>
-                                <a href="mailto:your.email@domain.com">
-                                    <i class="ri-mail-fill"></i>
-                                </a>
-                            </div>
-                            <p class="creator-description">
-                                Passionate about creating smart solutions for water management and conservation.
-                            </p>
+                    <div class="contact-info">
+                        <div class="info-card">
+                            <i class="ri-map-pin-2-line"></i>
+                            <h3>Visit Us</h3>
+                            <p>G. H. Raisoni College of Engineering</p>
+                            <p>CRPF Gate No. 3, Hingna Road</p>
+                            <p>Nagpur - 440016</p>
+                        </div>
+                        <div class="info-card">
+                            <i class="ri-phone-line"></i>
+                            <h3>Call Us</h3>
+                            <p>+91 712 2234567</p>
+                            <p>Mon - Fri: 9:00 AM - 5:00 PM</p>
+                        </div>
+                        <div class="info-card">
+                            <i class="ri-mail-line"></i>
+                            <h3>Email Us</h3>
+                            <p>support@oxypure.com</p>
+                            <p>info@oxypure.com</p>
                         </div>
                     </div>
-
-                    <!-- Existing Contact Form -->
+                    
                     <div class="contact-form-container">
+                        <h3>Send us a Message</h3>
                         <form class="contact-form">
-                            <input type="text" placeholder="Name" required>
-                            <input type="email" placeholder="Email" required>
-                            <textarea placeholder="Message" required></textarea>
+                            <div class="form-group">
+                                <input type="text" placeholder="Name" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="email" placeholder="Email" required>
+                            </div>
+                            <div class="form-group">
+                                <textarea placeholder="Message" rows="5" required></textarea>
+                            </div>
                             <button type="submit" class="btn-primary">Send Message</button>
                         </form>
                     </div>
@@ -386,28 +388,27 @@
                 <h2>About Us</h2>
                 <div class="about-container">
                     <div class="team-section">
-                        <h3>Created By</h3>
                         <div class="creator-grid">
                             <div class="creator-card">
                                 <div class="creator-profile">
                                     <div class="creator-avatar">
                                         <i class="ri-user-fill"></i>
                                     </div>
-                                    <h4>Creator Name 1</h4>
-                                    <p class="creator-title">Frontend Developer</p>
+                                    <h4>Shreyanshu Dhawale</h4>
+                                    <p class="creator-title">Web Developer</p>
                                     <div class="creator-socials">
-                                        <a href="https://github.com/creator1" target="_blank">
+                                        <a href="https://github.com/Shreyanshu20" target="_blank">
                                             <i class="ri-github-fill"></i>
                                         </a>
-                                        <a href="https://linkedin.com/in/creator1" target="_blank">
+                                        <a href="https://www.linkedin.com/in/shreyanshu-dhawale/" target="_blank">
                                             <i class="ri-linkedin-box-fill"></i>
                                         </a>
-                                        <a href="mailto:creator1@domain.com">
+                                        <a href="mailto:shreyanshudhawale2@gmail.com">
                                             <i class="ri-mail-fill"></i>
                                         </a>
                                     </div>
                                     <p class="creator-description">
-                                        Specialized in creating intuitive user interfaces and responsive designs.
+                                        Passionate about creating user-friendly web applications.
                                     </p>
                                 </div>
                             </div>
@@ -417,8 +418,8 @@
                                     <div class="creator-avatar">
                                         <i class="ri-user-fill"></i>
                                     </div>
-                                    <h4>Creator Name 2</h4>
-                                    <p class="creator-title">Backend Developer</p>
+                                    <h4>Dhiraj Ikhar</h4>
+                                    <p class="creator-title">Project Leader</p>
                                     <div class="creator-socials">
                                         <a href="https://github.com/creator2" target="_blank">
                                             <i class="ri-github-fill"></i>
@@ -426,7 +427,7 @@
                                         <a href="https://linkedin.com/in/creator2" target="_blank">
                                             <i class="ri-linkedin-box-fill"></i>
                                         </a>
-                                        <a href="mailto:creator2@domain.com">
+                                        <a href="mailto:dhiraj.ikhar.it@ghrce.raisoni.net">
                                             <i class="ri-mail-fill"></i>
                                         </a>
                                     </div>
@@ -440,25 +441,27 @@
 
                     <div class="mentor-section">
                         <h3>Mentored By</h3>
-                        <div class="mentor-card">
-                            <div class="creator-profile">
-                                <div class="creator-avatar mentor">
-                                    <i class="ri-user-star-fill"></i>
+                        <div class="mentor-grid">
+                            <div class="creator-card">
+                                <div class="creator-profile">
+                                    <div class="creator-avatar mentor">
+                                        <i class="ri-user-star-fill"></i>
+                                    </div>
+                                    <h4>Aruna Sudame</h4>
+                                    <p class="creator-title">Project Mentor</p>
+                                    <p class="mentor-designation">Assistant Professor, Information Technology</p>
+                                    <div class="creator-socials">
+                                        <a href="https://linkedin.com/in/mentor" target="_blank">
+                                            <i class="ri-linkedin-box-fill"></i>
+                                        </a>
+                                        <a href="mailto:aruna.sudame@raisoni.net">
+                                            <i class="ri-mail-fill"></i>
+                                        </a>
+                                    </div>
+                                    <p class="creator-description">
+                                        Guiding students in innovative water management solutions and IoT integration.
+                                    </p>
                                 </div>
-                                <h4>Mentor Name</h4>
-                                <p class="creator-title">Project Mentor</p>
-                                <p class="mentor-designation">Professor, Department Name</p>
-                                <div class="creator-socials">
-                                    <a href="https://linkedin.com/in/mentor" target="_blank">
-                                        <i class="ri-linkedin-box-fill"></i>
-                                    </a>
-                                    <a href="mailto:mentor@domain.com">
-                                        <i class="ri-mail-fill"></i>
-                                    </a>
-                                </div>
-                                <p class="creator-description">
-                                    Guiding students in innovative water management solutions.
-                                </p>
                             </div>
                         </div>
                     </div>
