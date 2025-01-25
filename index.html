@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Water Filter Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="login-container" id="loginSection">
+        <form id="loginForm" class="form-card">
+            <h2>Login & WiFi Setup</h2>
+            <!-- User Credentials -->
+            <div class="form-group">
+                <h3>User Credentials</h3>
+                <input type="text" placeholder="Username" id="username" required>
+                <input type="password" placeholder="Password" id="userPassword" required>
+            </div>
+            <!-- WiFi Credentials -->
+            <div class="form-group">
+                <h3>WiFi Settings</h3>
+                <input type="text" placeholder="WiFi Name" id="wifiName" required>
+                <input type="password" placeholder="WiFi Password" id="wifiPassword" required>
+            </div>
+            <button type="submit">Login & Connect</button>
+        </form>
+    </div>
+
+    <div class="dashboard hidden" id="dashboardSection">
+        <nav>
+            <div class="logo">Smart Filter</div>
+            <ul>
+                <li><a href="#dashboard" class="active">Dashboard</a></li>
+                <li><a href="#filter-status">Filter Status</a></li>
+                <li><a href="#usage-stats">Usage Stats</a></li>
+                <li><a href="#settings">Settings</a></li>
+                <li><a href="#contact">Contact Us</a></li>
+            </ul>
+        </nav>
+
+        <main>
+            <section id="dashboard" class="active">
+                <h2>Dashboard</h2>
+                <div class="dashboard-grid">
+                    <div class="card">
+                        <h3>Water Quality</h3>
+                        <p class="value">98%</p>
+                    </div>
+                    <div class="card">
+                        <h3>Filter Life</h3>
+                        <p class="value">85%</p>
+                    </div>
+                    <div class="card">
+                        <h3>Usage Today</h3>
+                        <p class="value">5.2L</p>
+                    </div>
+                    <div class="card">
+                        <h3>Alerts</h3>
+                        <p class="value">0</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="filter-status">
+                <h2>Filter Status</h2>
+                <div class="status-container">
+                    <div class="status-card">
+                        <h3>Current Status</h3>
+                        <div class="status-indicator green"></div>
+                        <p>Healthy</p>
+                    </div>
+                    <div class="status-info">
+                        <p>Last Changed: <span>01/01/2024</span></p>
+                        <p>Next Change: <span>01/04/2024</span></p>
+                        <p>Estimated Life: <span>85 days</span></p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="usage-stats">
+                <h2>Usage Statistics</h2>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <h3>Daily Usage</h3>
+                        <p>5.2L</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Weekly Average</h3>
+                        <p>35.8L</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Monthly Total</h3>
+                        <p>142.5L</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="settings">
+                <h2>Settings</h2>
+                <div class="settings-container">
+                    <div class="setting-item">
+                        <h3>Notifications</h3>
+                        <label class="switch">
+                            <input type="checkbox" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    <div class="setting-item">
+                        <h3>WiFi Settings</h3>
+                        <button class="btn-secondary">Update</button>
+                    </div>
+                    <div class="setting-item">
+                        <h3>Maintenance Schedule</h3>
+                        <button class="btn-secondary">Configure</button>
+                    </div>
+                </div>
+            </section>
+
+            <section id="contact">
+                <h2>Contact Us</h2>
+                <form class="contact-form">
+                    <input type="text" placeholder="Name" required>
+                    <input type="email" placeholder="Email" required>
+                    <textarea placeholder="Message" required></textarea>
+                    <button type="submit" class="btn-primary">Send Message</button>
+                </form>
+            </section>
+        </main>
+    </div>
+    <script src="app.js"></script>
+</body>
+
+</html>
