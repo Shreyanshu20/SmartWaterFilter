@@ -145,6 +145,63 @@ nav {
     }
 }
 
+@media (max-width: 375px) {
+    main {
+        margin-top: 11rem;
+        padding: 1rem;
+    }
+
+    .dashboard-charts {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        margin: 1rem 0;
+    }
+
+    .chart-card {
+        min-height: 300px;
+        padding: 1rem;
+    }
+
+    .chart-card.wide {
+        min-height: 350px;
+    }
+
+    .quick-stats {
+        gap: 1rem;
+        margin: 1rem 0;
+    }
+
+    .stat-card {
+        padding: 1rem;
+        height: auto;
+        min-height: 200px;
+    }
+
+    .stat-value {
+        font-size: 1.8rem;
+    }
+
+    .quick-actions {
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-top: 1rem;
+    }
+
+    .action-btn {
+        padding: 0.6rem 1rem;
+        font-size: 0.9rem;
+    }
+
+    h2.heading {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .chart-card h3 {
+        font-size: 1rem;
+    }
+}
+
 @media (max-width: 320px) {
     .login-container {
         padding: 1.5rem 1rem;
@@ -226,6 +283,11 @@ section.active {
 }
 
 /* Filter Status Styles */
+
+#filter-status{
+    padding: 0rem 1rem;
+}
+
 .status-container {
     display: grid;
     grid-template-columns: 1fr 2fr;
@@ -341,6 +403,10 @@ section.active {
 }
 
 /* Usage Stats Styles */
+
+#usage-stats{
+    padding: 0rem 1rem;
+}
 
 #usage-stats h2 {
     margin-bottom: 2rem;
@@ -581,6 +647,11 @@ section.active {
 }
 
 /* Settings Styles */
+
+#settings {
+    padding: 0rem 1rem;
+}
+
 .settings-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
@@ -750,6 +821,11 @@ input:checked+.slider:before {
 }
 
 /* Contact Form Styles */
+
+#contact {
+    padding: 0rem 1rem;
+}
+
 .contact-form {
     max-width: 600px;
     margin-top: 1rem;
@@ -1072,7 +1148,8 @@ input:checked+.slider:before {
 }
 
 #water-analysis {
-    animation: fadeIn 0.5s ease-out;
+    padding: 0rem 1rem;
+    animation: fadeIn 0.3s ease-out;
 }
 
 .analysis-card canvas {
@@ -1082,14 +1159,19 @@ input:checked+.slider:before {
 }
 
 /* About Section */
+
+#about {
+    padding: 0rem 1rem;
+}
+
 .about-container {
     padding: 2rem;
     max-width: 1200px;
     margin: 0 auto;
 }
 
-@media(max-width: 450px){
-    .about-container{
+@media(max-width: 450px) {
+    .about-container {
         padding: 0;
     }
 }
@@ -1145,9 +1227,11 @@ input:checked+.slider:before {
 /* Dashboard Charts */
 .dashboard-charts {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr;
     gap: 1.5rem;
-    margin: 2rem 0;
+    width: 100%;
+    max-width: 1400px;
+    margin: 2rem;
 }
 
 .chart-card {
@@ -1155,7 +1239,7 @@ input:checked+.slider:before {
     padding: 1.5rem;
     border-radius: 12px;
     box-shadow: var(--shadow);
-    min-height: 350px;
+    width: 100%;
 }
 
 .chart-card.wide {
@@ -1303,6 +1387,205 @@ input:checked+.slider:before {
 @media (max-width: 768px) {
     main {
         margin-top: 11rem;
-        padding: 2rem;
+        padding: 2rem 1rem;
+    }
+}
+
+/* Dashboard Layout Fixes */
+#dashboard {
+    max-width: 100%;
+    overflow-x: hidden;
+    padding: 1rem;
+}
+
+/* .dashboard-charts {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+} */
+
+.quick-stats {
+    width: 100%;
+    max-width: 1400px;
+    margin: 1rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+.chart-card.wide {
+    width: 100%;
+    min-height: 300px;
+    max-height: 400px;
+}
+
+@media (max-width: 768px) {
+    #dashboard {
+        padding: 0.5rem;
+    }
+
+    .quick-stats {
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        max-width: 350px;
+    }
+}
+
+@media (max-width: 400px) {
+    main {
+        margin-top: 11rem;
+        padding: 1rem;
+    }
+
+    #dashboard {
+        padding: 0.25rem;
+        margin-top: 1rem;
+    }
+
+    .quick-stats {
+        max-width: 400px;
+        grid-template-columns: 1fr;
+    }
+
+    .chart-card.wide {
+        min-height: 250px;
+    }
+}
+
+.chart-container {
+    position: relative;
+    height: 300px;
+    width: 100%;
+    margin: 0;
+}
+
+@media (max-width: 768px) {
+    .dashboard-charts {
+        gap: 1rem;
+        margin: 1rem;
+        max-width: 600px;
+    }
+
+    .chart-card {
+        padding: 1rem;
+    }
+
+    .chart-container {
+        height: 250px;
+    }
+}
+
+@media (max-width: 430px) {
+    .dashboard-charts {
+        max-width: 350px;
+    }
+
+    .chart-container {
+        height: 300px;
+    }
+
+    .chart-card {
+        padding: 0.75rem;
+    }
+
+    .quick-actions {
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .action-btn {
+        width: 80%;
+    }
+}
+
+
+@media (max-width: 380px) {
+    .quick-stats {
+        max-width: 300px;
+    }
+
+    .dashboard-charts {
+        max-width: 300px;
+    }
+
+    .chart-container {
+        height: 250px;
+    }
+
+    .quick-actions {
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .action-btn {
+        width: 80%;
+    }
+}
+
+@media (max-width: 330px) {
+    .quick-stats {
+        max-width: 270px;
+    }
+
+    .dashboard-charts {
+        margin: 0;
+        margin-top: 2rem;
+        max-width: 270px;
+    }
+
+    .chart-container {
+        height: 200px;
+    }
+
+    .quick-stats{
+        margin: 0rem;
+    }
+
+    .quick-actions {
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .action-btn {
+        width: 80%;
+    }
+
+    .usage-card{
+        height: 350px;
+    }
+
+    .usage-card canvas{
+        height: calc(100% - 2rem) !important;
+    }
+
+    .analysis-grid{
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+
+    .settings-group{
+        padding: 1.5rem;
+    }
+
+    .switch {
+        width: 40px;
+        height: 20px;
+    }
+
+    .slider:before {
+        height: 16px;
+        width: 16px;
+        left: 2px;
+        bottom: 2px;
+    }
+
+    input:checked + .slider:before {
+        transform: translateX(20px);
+    }
+
+    .setting-item {
+        padding: 0.75rem 0;
+    }
+
+    .select-styled, .input-styled {
+        width: 75px;
     }
 }
